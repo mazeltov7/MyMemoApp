@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="settings.text.size.default">18sp</dimen>
+    <dimen name="settings.text.size.large">36sp</dimen>
+    <dimen name="settings.text.size.medium">18sp</dimen>
+    <dimen name="settings.text.size.small">9sp</dimen>
+</resources>

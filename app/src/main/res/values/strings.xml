@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MyMemoApp</string>
+
+    <!-- フォントサイズ -->
+    <string name="settings_text_size">フォントサイズ</string>
+    <string name="settings_text_size_large">大</string>
+    <string name="settings_text_size_medium">中</string>
+    <string name="settings_text_size_small">小</string>
+
 </resources>
