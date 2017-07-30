@@ -7,4 +7,11 @@
     <string name="settings_text_size_medium">中</string>
     <string name="settings_text_size_small">小</string>
 
+    <string name="permission.memo.read">com.example.android.yukiishikawa.mymemoapp.memo.read</string>
+    <string name="permission.memo.read.label">メモ情報の読み取り</string>
+    <string name="permission.memo.read.description">作成したメモの情報を読み取ります</string>
+    <string name="permission.memo.write">com.example.android.yukiishikawa.mymemoapp.memo.write</string>
+    <string name="permission.memo.write.label">メモ情報の編集</string>
+    <string name="permission.memo.write.description">作成したメモ情報を編集します</string>
+
 </resources>

@@ -62,7 +62,7 @@ public class MemoRepository {
         ContentValues values = new ContentValues();
         values.put(MemoDBHelper.TITLE, title);
         values.put(MemoDBHelper.DATA, outputFile.getAbsolutePath());
-        values.put(MemoDBHelper.DATA_ADDED, System.currentTimeMillis());
+        values.put(MemoDBHelper.DATE_ADDED, System.currentTimeMillis());
 
         // ContentProviderに保存する
         return context.getContentResolver().insert(MemoProvider.CONTENT_URI, values);
