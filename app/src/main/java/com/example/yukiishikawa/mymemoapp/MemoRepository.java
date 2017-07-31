@@ -22,6 +22,36 @@ public class MemoRepository {
     // インスタンスを作らせない
     private MemoRepository() {}
 
+    // メモを新規に保存する
+    public static Uri create(Context context, String memo) {
+        // 出力先ディレクトリを取得
+        File outputDir = getOutputDir(context);
+
+        if (outputDir == null) {
+            // 何らかの原因でディレクトリが見つからなかった
+            return null;
+        }
+
+        // 出力先ファイル名を決定する
+        File outputFile = getFileName(context, outputDir);
+        if (outputFile == null || writeToFile(outputFile, memo)) {
+            // ファイルの書き込みに失敗した場合
+            return null;
+        }
+
+        // メモのタイトルは、文章内容から決定
+        String title = memo.length() > 10 ? memo.substring(0, 10) : memo;
+
+        // データベースに登録するその他の情報
+        ContentValues values = new ContentValues();
+        values.put(MemoDBHelper.TITLE, title);
+        values.put(MemoDBHelper.DATA, outputFile.getAbsolutePath());
+        values.put(MemoDBHelper.DATE_ADDED, System.currentTimeMillis());
+
+        // コンテントプロバイダに挿入する
+        return context.getContentResolver().insert(MemoProvider.CONTENT_URI, values);
+    }
+
     // メモの出力先ディレクトリを取得する
     private static File getOutputDir(Context context) {
         File outputDir;
