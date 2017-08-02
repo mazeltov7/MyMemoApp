@@ -2,13 +2,19 @@ package com.example.yukiishikawa.mymemoapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.text.TextUtils;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Calendar;
 
 /**
@@ -50,6 +56,72 @@ public class MemoRepository {
 
         // コンテントプロバイダに挿入する
         return context.getContentResolver().insert(MemoProvider.CONTENT_URI, values);
+    }
+
+    // 既存のメモを更新する
+    public static int update(Context context, Uri uri, String memo) {
+        // 引数のURIをもとに、まずはデータベースから検索する
+        // ID部分
+        String id = uri.getLastPathSegment();
+        // 検索
+        Cursor cursor = context.getContentResolver().query(uri,
+                new String[]{MemoDBHelper.Data}, MemoDBHelper._ID + " = ?", new String[]{id}, null);
+        if (cursor == null) {
+            return 0;
+        }
+
+        String filePath = null;
+        while (cursor.moveToNext()) {
+            filePath = cursor.getString(cursor.getColumnIndex(MemoDBHelper.DATA));
+        }
+
+        cursor.close();
+
+        if (TextUtils.isEmpty(filePath)) {
+            return 0;
+        }
+
+        File outputFile = new File(filePath);
+        if (writeToFile(outputFile, memo)) {
+            return 0;
+        }
+
+        return 1;
+    }
+
+    // メモを読み込む
+    public static String findMemoByUri(Context context, Uri uri) {
+        BufferedReader reader = null;
+        StringBuilder builder = new StringBuilder();
+        try {
+            InputStream inputStream = context.getContentResolver().openInputStream(uri);
+            if (inputStream != null) {
+                reader = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    builder.append(line);
+                    builder.append("\n");
+                }
+            }
+        } catch (FileNotFoundException fnfe) {
+            // ファイルが削除されるなどして見つからなかった場合
+            fnfe.printStackTrace();
+            return context.getString(R.string.error_memo_file_not_found);
+        } catch (IOException ioe) {
+            // ファイル読み込みに失敗した場合
+            ioe.printStackTrace();
+            return context.getString(R.string.error_memo_file_load_failed);
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return builder.toString();
     }
 
     // メモの出力先ディレクトリを取得する
