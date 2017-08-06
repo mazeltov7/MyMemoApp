@@ -65,7 +65,7 @@ public class MemoRepository {
         String id = uri.getLastPathSegment();
         // 検索
         Cursor cursor = context.getContentResolver().query(uri,
-                new String[]{MemoDBHelper.Data}, MemoDBHelper._ID + " = ?", new String[]{id}, null);
+                new String[]{MemoDBHelper.DATA}, MemoDBHelper._ID + " = ?", new String[]{id}, null);
         if (cursor == null) {
             return 0;
         }
@@ -122,6 +122,11 @@ public class MemoRepository {
         }
 
         return builder.toString();
+    }
+
+    // メモの一覧を取得
+    public static Cursor query(Context context) {
+        return context.getContentResolver().query((MemoProvider.CONTENT_URI, null, null, null, MemoDBHelper.DATE_MODIFIED + " DESC"));
     }
 
     // メモの出力先ディレクトリを取得する

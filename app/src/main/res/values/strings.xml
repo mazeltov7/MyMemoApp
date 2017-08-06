@@ -14,4 +14,10 @@
     <string name="permission.memo.write.label">メモ情報の編集</string>
     <string name="permission.memo.write.description">作成したメモ情報を編集します</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="error_memo_file_not_found">ファイルが見つかりません</string>
+    <string name="error_memo_file_load_failed">ファイルの読み込みに失敗しました</string>
 </resources>
