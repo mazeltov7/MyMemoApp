@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</LinearLayout>
+<com.example.yukiishikawa.mymemoapp.MemoEditText
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:memo="http://schemas.android.com/apk/res-auto"
+    memo:lineEffect="dash"
+    memo:lineColor="@android:color/darker_gray"
+    android:id="@+id/Memo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:singleLine="false"
+    android:gravity="start|top"
+    android:hint="メモを入力"
+    android:textSize="18sp"
+    android:padding="64dp"
+    android:background="@android:color/transparent"
+    />

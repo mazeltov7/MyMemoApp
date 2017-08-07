@@ -1,11 +1,42 @@
 <resources>
     <string name="app_name">MyMemoApp</string>
 
+    <string name="action_settings">設定</string>
+    <string name="action_save">保存</string>
+    <string name="action_load">読み込み</string>
+
+    <!-- 文字の設定 -->
+    <string name="settings_text">文字の設定</string>
+
     <!-- フォントサイズ -->
     <string name="settings_text_size">フォントサイズ</string>
     <string name="settings_text_size_large">大</string>
     <string name="settings_text_size_medium">中</string>
     <string name="settings_text_size_small">小</string>
+    <string name="settings_text_size_dialog_title">フォントサイズの選択</string>
+
+    <!-- タイプフェイス -->
+    <string name="settings_text_style">装飾</string>
+    <string name="settings_text_style_italic">イタリック</string>
+    <string name="settings_text_style_bold">太字</string>
+    <string name="settings_text_style_dialog_title">文字装飾の選択</string>
+
+    <!-- 画面の設定 -->
+    <string name="settings_screen">画面の設定</string>
+    <!-- 色の反転 -->
+    <string name="settings_screen_color_reverse">色の反転</string>
+
+    <!-- ファイルの設定 -->
+    <string name="settings_file">ファイルの設定</string>
+
+    <!-- ファイル名のプレフィックス -->
+    <string name="settings_file_name_prefix">プレフィックス</string>
+    <string name="settings_file_name_prefix_default">memo</string>
+    <string name="settings_file_name_prefix_dialog_title">ファイル名のプレフィックス</string>
+    <string name="settings_file_name_prefix_dialog_message">ファイル名のプレフィックスを入力して下さい。</string>
+
+    <string name="memo_hint">メモを入力</string>
+    <string name="memo_create">新規作成する</string>
 
     <string name="permission.memo.read">com.example.android.yukiishikawa.mymemoapp.memo.read</string>
     <string name="permission.memo.read.label">メモ情報の読み取り</string>
